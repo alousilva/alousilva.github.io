@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Circles</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="assets/js/paper-full.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.core.min.js"></script>
+        <link type="text/css" rel="stylesheet" href="assets/css/circles.css">
+        <script type="text/paperscript" canvas="myCanvas">
+            /*
+            console.log("xsdsd");
+            var path = new Path();
+            path.strokeColor = 'green';
+            var start = new Point(500, 100);
+            path.moveTo(start);
+            path.lineTo(start + [100, -50]);
+            var myCircle = new Path.Circle(new Point(100, 50), 70);
+            myCircle.fillColor = 'green';
+            var myCircle2 = new Path.Circle(new Point(50, 50), 300);
+            myCircle2.fillColor = 'red';
+            */
+            /*
+            var x = 0;
+            var y = 0;
+            var radius = 10;
+            var newX = 20;
+            var newY = 10;
+            for(var i=0; i < 5; i++){
+                newX += x;
+                for(var j=0; j< 5; j++){
+                    y=80;
+                    newY += y;
+                    var myCircle = new Path.Circle(new Point(newX, newY), radius);
+                    myCircle.fillColor = 'green';  
+                }
+                newY=10;
+                x=80;
+            }
+            */
+            /*
+            for(var x = 0; x < 1000 ; x += 100){
+                for(var y = 0; y < 1000 ; y += 100){
+                    var myCircle = new Path.Circle(new Point(x, y), 20);
+                    myCircle.fillColor = 'green';
+                    //or a more efficient approach:
+                    // new Path.Circle(new Point(x, y), 20).fillColor = 'green';
+                }
+            }
+            */
+
+            var sound1 = new Howl({
+                src: ['assets/sounds/bubbles.mp3']
+            });
+
+            var sound2 = new Howl({
+                src: ['assets/sounds/clay.mp3']
+            });
+
+            var circles = [];
+            function onKeyDown(event) {
+                //generates random points:
+                var maxPoint = new Point(view.size.width, view.size.height);
+                var randomPoint = Point.random();
+                //console.log(randomPoint);
+                var point = maxPoint * randomPoint;
+                var newCircle = new Path.Circle(point, 500);
+                newCircle.fillColor = 'green';
+                if(event.key === "a"){
+                    sound1.play();
+                    newCircle.fillColor = 'yellow';
+                }
+
+                if(event.key === "s"){
+                    sound2.play();
+                    newCircle.fillColor = 'pink';
+                }
+                circles.push(newCircle);
+            }
+
+            function onFrame(event){
+                for(var i = 0; i < circles.length; i++){
+                  //console.log(circles[i]);
+                  circles[i].fillColor.hue += 2;
+                  circles[i].scale(0.9);
+                }
+            }
+        </script>
+</head>
+<body>
+    <canvas id="myCanvas" resize></canvas>
+</body>
+
+</html>
