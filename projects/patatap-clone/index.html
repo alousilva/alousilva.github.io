@@ -71,14 +71,6 @@
                 }
             }
 
-            var sound1 = new Howl({
-                src: ['assets/sounds/bubbles.mp3']
-            });
-
-            var sound2 = new Howl({
-                src: ['assets/sounds/clay.mp3']
-            });
-
             var circles = [];
             function onKeyDown(event) {
                 if(keyPressed[event.key]){
@@ -102,7 +94,7 @@
                       circles[i].remove();
                       circles.splice(i, 1);
                       i--;
-                      console.log(circles);
+                      //console.log(circles);
                     }
                 }
             }
